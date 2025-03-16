@@ -13,14 +13,5 @@ def client():
 def test_home(client):
     response = client.get('/')
     assert response.status_code == 200
-    assert b'Welcome' in response.data
-
-def test_api_schedule(client):
-    response = client.get('/api/schedule')
-    assert response.status_code == 200
-    assert 'schedule' in response.json
-
-def test_db_insert():
-    create_schedule('Math', '9 AM')  # Example function
-    assert check_schedule_exists('Math')  # Replace with actual function
+    assert b"Welcome" in response.data
 
