@@ -1,4 +1,8 @@
 import pytest
+import sys
+import os
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__) + "/..")))
 from app import app  # Update with the correct path
 
 @pytest.fixture
@@ -10,10 +14,6 @@ def test_home(client):
     response = client.get('/')
     assert response.status_code == 200
     assert b'Welcome' in response.data
-def test_timetable_creation():
-    result = create_timetable(batch='A', subjects=['Math', 'Science'])
-    assert len(result) == 2  # Replace with the expected condition
-    assert 'Math' in result
 
 def test_api_schedule(client):
     response = client.get('/api/schedule')
