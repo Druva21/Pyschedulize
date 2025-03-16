@@ -7,8 +7,9 @@ from app import app  # Update with the correct path
 
 @pytest.fixture
 def client():
-    with app.test_client() as client:
-        yield client
+    app.config['TESTING'] = True
+    client = app.test_client()
+    yield client
 
 def test_home(client):
     response = client.get('/')
