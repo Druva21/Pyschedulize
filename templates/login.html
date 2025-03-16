@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <fieldset>
+            <form>
+                <label for="number">Number: </label>
+                <input type="text" id="number" required><br>
+                <input type="submit" onclick="subm()" value="SUBMIT">
+            </form>
+        </fieldset>
+        <a href="{{ url_for('user_profile') }}">Profile</a>
+        <script>
+            function subm()
+            {
+                var i=getElementById("number").value;
+                var data={
+                    "number":i
+                };
+                var jdata=JSON.stringify(data);
+                fetch('/processValues',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: jdata
+                })
+            .then(response => response.json())
+            .then(data => {
+                x=json.load(data);
+                print(x);
+                // Handle the response from the server (if needed)
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            }
+        </script>
+    </body>
+</html>

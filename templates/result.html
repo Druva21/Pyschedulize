@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console Values</title>
+<style>
+        body {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXYZ5jgPICvdS2vlXtXED-AUqr6reQxPgoA&usqp=CAU'); /* Replace 'your-image-url.jpg' with your image URL */
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Prevent image from repeating */
+        }
+    </style>
+</head>
+
+
+<body>
+    <h1>Time Table</h1>
+    <ul>
+        {% for value in console_values %}
+            {% for value1 in value %}
+                <li>{% for value2 in value1 %}
+                    {{ value2 }}<br/>
+                {% endfor %}</li><br/><br/>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
