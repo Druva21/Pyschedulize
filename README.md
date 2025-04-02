@@ -122,8 +122,4 @@ Get-NetTCPConnection -LocalPort 5000
 - If you still see something, the port hasn’t released the process yet. It may release after some time.
 - **Note**: Sometimes, Windows reserves ports for a short period. If you don’t want to wait, restart your system to clear the port.
 
----
 
-This README provides a step-by-step guide to deploying an application using Chef Workstation, based on the `Pyschedulize` repository. Follow the instructions carefully, and ensure you run commands with the required permissions.
-
---- 
