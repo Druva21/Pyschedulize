@@ -31,8 +31,6 @@ Chef is a powerful automation tool used for configuring, managing, and deploying
 
 These are the fundamental steps in deploying an application using Chef. Let’s see how to deploy one by taking an application.
 
-In this project, I have used this repository:  
-[https://github.com/Druva21/Pyschedulize](https://github.com/Druva21/Pyschedulize)
 
 ### Suggestions/Requisites:
 - Open PowerShell as **Admin** while running the application.
