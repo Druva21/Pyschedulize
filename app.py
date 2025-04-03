@@ -29,11 +29,12 @@ def addCommon(base, time, lis):
                 time[day][hour] = base[day][hour]
     return time
 
-def findLeisure(credits):
-    for dictionary in credits:
-        sum = sum(dictionary.values())
-        dictionary['leisure'] = 32 - sum
-    return credits
+def findLeisure(dictionary):
+    total_sum = sum(dictionary.values())  # Use a different variable name
+    leisure_hours = 40 - total_sum  # Adjust according to your logic
+    dictionary["Leisure"] = leisure_hours
+    return dictionary
+
 
 def addLeisure(teachers):
     for year in teachers:
