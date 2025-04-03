@@ -1,119 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time Table Generator</title>
-    <style>
-        /* Your existing styles here */
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_XqGGOMDqCmLPm2q_yCyXan8gLE6do_O2wQ&usqp=CAU'); /* Add the path to your background image */
-            background-size: 100vw 100vh;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
+<html>
 
-        h1 {
-            text-align: center;
-        }
+<head><title>Assignment Deployment</title></head>
 
-        form {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* Background color with opacity */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input[type="number"], input[type="text"], textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        #result {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* Background color with opacity */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        th, td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: center;
-        }
-        /* Add your custom styles here */
-
-        /* Animation styles */
-        .form-animation {
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
-</head>
 <body>
-    <h1>Timetable Generator</h1>
-    <form id="timetableForm" action="/generate_timetable" method="post" class="form-animation">
-        <!-- Your form fields here -->
-        <label for="years" name="years">Enter total no. of years:</label>
-        <input type="number" name="years" id="years" required><br><br>
 
-        <label for="batches" name="batches">Enter no. of batches (in list form):</label>
-        <input type="text" name="batches" id="batches" required><br><br>
+  <h1>Deployed by: Rohan Kancharla</h1>
 
-        <label for="credits" name="credits">Enter subject credits (as python list of dictionaries):</label>
-        <textarea name="credits" id="credits" required></textarea><br><br>
+  <h2>Register Number: 2022BCD0058</h2>
 
-        <label for="commonCredits" name="commonCredits">Enter common courses (in list of lists form):</label>
-        <textarea name="commonCredits" id="commonCredits"></textarea><br><br>
-
-        <label for "teachers" name="teachers">Enter teacher info (as python list of list of dictionaries):</label>
-        <textarea name="teachers" id="teachers" required></textarea><br><br>
-        <button type="submit">Generate Timetable</button>
-    </form>
 </body>
+
 </html>
