@@ -1,24 +1,5 @@
-# Familiarization of Chef
+# How to deploy this application using Chef
 
-## 1) What is Chef?
-
-Chef is a powerful automation tool used for configuring, managing, and deploying applications across different systems. It follows an **Infrastructure as Code (IaC)** approach, allowing users to define system configurations in code. Chef helps automate tasks like software installation, server configuration, and application deployment, ensuring consistency and scalability in DevOps workflows.
-
----
-
-## 2) Why Chef Workstation Instead of Chef Infra Server?
-
-### i) Chef has two primary setups:
-- **Chef Infra Server**: Used for managing multiple nodes (servers) remotely. It requires setting up a central server where nodes pull configurations.
-- **Chef Workstation**: A local development environment for testing and running Chef cookbooks without setting up a server.
-
-### ii) For running this application, we chose Workstation because:
-- It allows testing and running Chef code locally without a separate server.
-- There’s no need for managing multiple machines—ideal for single-node deployments.
-- It simplifies configuration by using local mode (`--local-mode`), avoiding Chef Server setup complexities.
-- Faster and easier to debug since everything runs on one machine.
-
----
 
 ## 🖥️ Supported Operating Systems
 - **Linux**: Ubuntu, Debian, RHEL, CentOS, Fedora, SUSE, Amazon Linux
@@ -28,7 +9,7 @@ Chef is a powerful automation tool used for configuring, managing, and deploying
 
 ---
 
-## 3) Basic Steps to Deploy an Application Using Chef
+## Basic Steps to Deploy an Application Using Chef
 
 - Install Chef Workstation
 - Create a Chef Repository
