@@ -20,6 +20,14 @@ Chef is a powerful automation tool used for configuring, managing, and deploying
 
 ---
 
+## 🖥️ Supported Operating Systems
+- **Linux**: Ubuntu, Debian, RHEL, CentOS, Fedora, SUSE, Amazon Linux
+- **Windows**: Windows Server 2016, 2019, 2022, Windows 10, 11
+- **macOS**: macOS 10.15+ (Catalina, Big Sur, Monterey, Ventura)
+- **Unix**: AIX, Solaris
+
+---
+
 ## 3) Basic Steps to Deploy an Application Using Chef
 
 - Install Chef Workstation
