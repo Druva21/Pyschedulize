@@ -6,94 +6,89 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('https://i.imgur.com/nyHc9Ds.png'); /* Soft background */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: #000;
+            background: #f5f7fa;
             margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 40px auto;
-            background: rgba(255,255,255,0.95);
-            padding: 30px;
-            border-radius: 12px;
+            padding: 20px;
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 30px;
+            color: #2c3e50;
         }
 
-        h2, h3 {
-            margin-top: 30px;
-            color: #444;
+        .year-heading {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 1.6rem;
+            color: #34495e;
+        }
+
+        .batch-heading {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            color: #2c3e50;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
-        }
-
-        th, td {
-            border: 1px solid #bbb;
-            padding: 8px;
-            text-align: center;
+            margin-bottom: 30px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
         th {
-            background-color: #f5f5f5;
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border: 1px solid #ddd;
         }
 
         td {
-            background-color: #fff;
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #ccc;
         }
 
-        .timetable-block {
-            margin-bottom: 40px;
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📘 Generated Timetable</h1>
-
-        {% for year_data in console_values %}
-            <div class="timetable-block">
-                <h2>Year {{ loop.index }}</h2>
-
-                {% for batch_data in year_data %}
-                    <h3>Batch {{ loop.index }}</h3>
-
-                    <table>
-                        <thead>
+        <h1>Generated Timetable</h1>
+        {% for year_index in range(console_values | length) %}
+            <div class="year-heading">Year {{ year_index + 1 }}</div>
+            {% for batch_index in range(console_values[year_index] | length) %}
+                <div class="batch-heading">Batch {{ batch_index + 1 }}</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Day / Hour</th>
+                            {% for period in range(console_values[year_index][batch_index][0] | length) %}
+                                <th>H{{ period + 1 }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for day_index in range(console_values[year_index][batch_index] | length) %}
                             <tr>
-                                <th>Day</th>
-                                {% for period in range(batch_data[0]|length) %}
-                                    <th>Period {{ period + 1 }}</th>
+                                <td>Day {{ day_index + 1 }}</td>
+                                {% for period in console_values[year_index][batch_index][day_index] %}
+                                    <td>{{ '-' if period == 'leisuree' or period == 'leisure' else period }}</td>
                                 {% endfor %}
                             </tr>
-                        </thead>
-                        <tbody>
-                            {% for row_index in range(batch_data|length) %}
-                                <tr>
-                                    <td>
-                                        {% set days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'] %}
-                                        {{ days[row_index] }}
-                                    </td>
-                                    {% for item in batch_data[row_index] %}
-                                        <td>{{ '-' if item == 'leisuree' else item }}</td>
-                                    {% endfor %}
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                {% endfor %}
-            </div>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
         {% endfor %}
     </div>
 </body>
