@@ -70,10 +70,12 @@
 <body>
     <h1>📘 Timetable</h1>
 
-    {% for year_index, year in enumerate(console_values) %}
+    {% for year in console_values %}
+        {% set year_index = loop.index0 %}
         <div class="table-container">
             <h2>Year {{ year_index + 1 }}</h2>
-            {% for batch_index, batch in enumerate(year) %}
+            {% for batch in year %}
+                {% set batch_index = loop.index0 %}
                 <h3>Batch {{ batch_index + 1 }}</h3>
                 <table>
                     <thead>
@@ -85,11 +87,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for day_index, day in enumerate(batch) %}
+                        {% for day in batch %}
                             <tr>
-                                <td>Day {{ day_index + 1 }}</td>
+                                <td>Day {{ loop.index }}</td>
                                 {% for period in day %}
-                                    <td>{{ period }}</td>
+                                    <td>{{ '-' if period == 'leisuree' else period }}</td>
                                 {% endfor %}
                             </tr>
                         {% endfor %}
