@@ -9,7 +9,7 @@
 
 ---
 
-## Basic Steps to Deploy an Application Using Chef
+## Basic Steps to Deploy this Application Using Chef
 
 - Install Chef Workstation
 - Create a Chef Repository
