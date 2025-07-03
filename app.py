@@ -84,7 +84,7 @@ def generate_timetable():
                 time = assignValues(credits, teachers, x, y, allTimeTables, time, batches, commonCredits)
                 allTimeTables[x][y] = time
 
-        return render_template('result.html', console_values=allTimeTables, start_times=start_times)
+        return render_template("result.html", console_values=allTimeTables)
 
     except Exception as e:
         return f"Error processing form data: {e}", 500
