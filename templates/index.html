@@ -2,33 +2,108 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Timetable Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_XqGGOMDqCmLPm2q_yCyXan8gLE6do_O2wQ&usqp=CAU');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #fff;
+      margin-top: 30px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="number"], input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    form {
+      animation: fadeIn 0.8s ease-in-out;
+    }
+  </style>
 </head>
 <body>
-  <h1>Timetable Generator</h1>
+
+  <h1>📘 Timetable Generator</h1>
+
   <form action="/generate_timetable" method="post">
-    <label>Years:</label>
-    <input type="number" name="years" required><br><br>
+    <label for="years">Enter total number of years:</label>
+    <input type="number" name="years" id="years" required>
 
-    <label>Batches (list):</label>
-    <input type="text" name="batches" placeholder="[2, 2]" required><br><br>
+    <label for="batches">Enter number of batches (as list, e.g. [2, 3]):</label>
+    <input type="text" name="batches" id="batches" required>
 
-    <label>Credits (list of dicts):</label>
-    <textarea name="credits" rows="5" required></textarea><br><br>
+    <label for="credits">Enter subject credits (list of dictionaries):</label>
+    <textarea name="credits" id="credits" rows="4" required></textarea>
 
-    <label>Common Credits (list of lists):</label>
-    <textarea name="commonCredits" rows="3"></textarea><br><br>
+    <label for="commonCredits">Enter common subjects (list of lists):</label>
+    <textarea name="commonCredits" id="commonCredits" rows="3"></textarea>
 
-    <label>Teachers (list of list of dicts):</label>
-    <textarea name="teachers" rows="5" required></textarea><br><br>
+    <label for="teachers">Enter teacher mapping (list of list of dictionaries):</label>
+    <textarea name="teachers" id="teachers" rows="4" required></textarea>
 
-    <label>Number of Periods per Day:</label>
-    <input type="number" name="periods" required><br><br>
+    <label for="periods">Number of periods per day:</label>
+    <input type="number" name="periods" id="periods" required>
 
-    <label>Start Time for each year (JSON):</label>
-    <input type="text" name="start_times" placeholder='{"0": "9:00 AM", "1": "10:00 AM"}' required><br><br>
+    <label for="start_times">Start time for each year (JSON format):</label>
+    <input type="text" name="start_times" id="start_times" placeholder='{"0": "9:00 AM", "1": "10:00 AM"}' required>
 
     <button type="submit">Generate Timetable</button>
   </form>
+
 </body>
 </html>
