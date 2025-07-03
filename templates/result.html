@@ -1,31 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Console Values</title>
-<style>
+    <title>Timetable</title>
+    <style>
         body {
-            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXYZ5jgPICvdS2vlXtXED-AUqr6reQxPgoA&usqp=CAU'); /* Replace 'your-image-url.jpg' with your image URL */
-            background-size: cover; /* Cover the entire background */
-            background-repeat: no-repeat; /* Prevent image from repeating */
+            margin: 0;
+            padding: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            margin-top: 40px;
+            color: #34495e;
+            text-align: center;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #7f8c8d;
+            text-align: center;
+        }
+
+        .table-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #bbb;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
         }
     </style>
 </head>
-
-
 <body>
-    <h1>Time Table</h1>
-    <ul>
-        {% for value in console_values %}
-            {% for value1 in value %}
-                <li>{% for value2 in value1 %}
-                    {{ value2 }}<br/>
-                {% endfor %}</li><br/><br/>
-            {% endfor %}
-        {% endfor %}
-    </ul>
-</body>
+    <h1>📘 Timetable</h1>
 
+    {% for year_index, year in enumerate(console_values) %}
+        <div class="table-container">
+            <h2>Year {{ year_index + 1 }}</h2>
+            {% for batch_index, batch in enumerate(year) %}
+                <h3>Batch {{ batch_index + 1 }}</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Day / Hour</th>
+                            {% for hour in range(1, 9) %}
+                                <th>H{{ hour }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for day_index, day in enumerate(batch) %}
+                            <tr>
+                                <td>Day {{ day_index + 1 }}</td>
+                                {% for period in day %}
+                                    <td>{{ period }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</body>
 </html>
