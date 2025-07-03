@@ -2,94 +2,101 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Generated Timetable</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f5f7fa;
             margin: 0;
-            padding: 20px;
+            padding: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
         }
 
         h1 {
             text-align: center;
             color: #2c3e50;
+            margin-bottom: 50px;
         }
 
-        .year-heading {
-            text-align: center;
+        h2 {
             margin-top: 40px;
-            font-size: 1.6rem;
             color: #34495e;
+            text-align: center;
         }
 
-        .batch-heading {
+        h3 {
             margin-top: 20px;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-            color: #2c3e50;
+            color: #7f8c8d;
+            text-align: center;
+        }
+
+        .table-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         table {
-            width: 100%;
             border-collapse: collapse;
-            margin-bottom: 30px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #bbb;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
         }
 
         th {
             background-color: #3498db;
             color: white;
-            padding: 10px;
-            border: 1px solid #ddd;
-        }
-
-        td {
-            text-align: center;
-            padding: 8px;
-            border: 1px solid #ccc;
         }
 
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #f9f9f9;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
+        tr:hover {
+            background-color: #f1f1f1;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Generated Timetable</h1>
-        {% for year_index in range(console_values | length) %}
-            <div class="year-heading">Year {{ year_index + 1 }}</div>
-            {% for batch_index in range(console_values[year_index] | length) %}
-                <div class="batch-heading">Batch {{ batch_index + 1 }}</div>
+    <h1>📘 Timetable</h1>
+
+    {% for year in console_values %}
+        <div class="table-container">
+            <h2>Year {{ loop.index }}</h2>
+            {% for batch in year %}
+                <h3>Batch {{ loop.index }}</h3>
                 <table>
                     <thead>
                         <tr>
                             <th>Day / Hour</th>
-                            {% for period in range(console_values[year_index][batch_index][0] | length) %}
-                                <th>H{{ period + 1 }}</th>
+                            {% for hour in range(batch[0]|length) %}
+                                <th>H{{ hour + 1 }}</th>
                             {% endfor %}
                         </tr>
                     </thead>
                     <tbody>
-                        {% for day_index in range(console_values[year_index][batch_index] | length) %}
+                        {% for day in batch %}
                             <tr>
-                                <td>Day {{ day_index + 1 }}</td>
-                                {% for period in console_values[year_index][batch_index][day_index] %}
-                                    <td>{{ '-' if period == 'leisuree' or period == 'leisure' else period }}</td>
+                                <td>Day {{ loop.index }}</td>
+                                {% for period in day %}
+                                    <td>{{ '-' if period == 'leisure' or period == 'leisuree' else period }}</td>
                                 {% endfor %}
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             {% endfor %}
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
 </body>
 </html>
