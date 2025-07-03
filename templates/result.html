@@ -5,12 +5,19 @@
     <title>Generated Timetable</title>
     <style>
         body {
-            font-family: sans-serif;
-            background-image: url("https://img.freepik.com/free-vector/gradient-white-monochrome-background_23-2149000982.jpg");
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.imgur.com/nyHc9Ds.png'); /* Soft pattern background */
             background-size: cover;
-            background-repeat: no-repeat;
-            margin: 0;
+            color: #000;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.95);
             padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
         }
 
         h1 {
@@ -18,63 +25,62 @@
             margin-bottom: 40px;
         }
 
-        .year-title {
-            font-size: 24px;
+        h2 {
             margin-top: 40px;
-        }
-
-        .batch-title {
-            font-size: 18px;
-            margin-top: 10px;
             color: #333;
         }
 
         table {
-            width: 90%;
-            margin: 10px auto 40px;
+            width: 100%;
             border-collapse: collapse;
-            background-color: white;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
         th, td {
-            border: 1px solid #aaa;
+            border: 1px solid #ccc;
             padding: 8px;
             text-align: center;
+            background-color: #fff;
         }
 
         th {
-            background-color: #eee;
+            background-color: #f2f2f2;
         }
+
     </style>
 </head>
 <body>
-    <h1>📘 Timetable</h1>
+    <div class="container">
+        <h1>🗓 Generated Timetable</h1>
 
-    {% for year_idx, year in enumerate(console_values) %}
-        <div class="year-title">Year {{ year_idx + 1 }}</div>
-        {% for batch_idx, batch in enumerate(year) %}
-            <div class="batch-title">Batch {{ batch_idx + 1 }}</div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Day / Time</th>
-                        {% for time in start_times %}
-                            <th>{{ time }}</th>
-                        {% endfor %}
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for row_idx, row in enumerate(batch) %}
+        {% for year in console_values %}
+            <h2>Year {{ loop.index }}</h2>
+
+            {% for batch in year %}
+                <h3>Batch {{ loop.index }}</h3>
+                <table>
+                    <thead>
                         <tr>
-                            <td>Day {{ row_idx + 1 }}</td>
-                            {% for cell in row %}
-                                <td>{{ '-' if cell == 'leisure' or cell == 'leisuree' else cell }}</td>
+                            <th>Day</th>
+                            {% for i in range(batch[0]|length) %}
+                                <th>Period {{ i+1 }}</th>
                             {% endfor %}
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for day, row in zip(['Mon','Tue','Wed','Thu','Fri'], batch) %}
+                            <tr>
+                                <td>{{ day }}</td>
+                                {% for item in row %}
+                                    <td>{{ '-' if item == 'leisuree' else item }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
+    </div>
 </body>
 </html>
