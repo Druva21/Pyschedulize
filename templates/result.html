@@ -5,106 +5,76 @@
     <title>Generated Timetable</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b'); /* Calm, readable background */
+            font-family: sans-serif;
+            background-image: url("https://img.freepik.com/free-vector/gradient-white-monochrome-background_23-2149000982.jpg");
             background-size: cover;
             background-repeat: no-repeat;
-            background-attachment: fixed;
             margin: 0;
             padding: 20px;
-            color: #fff;
         }
 
         h1 {
             text-align: center;
-            font-size: 40px;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px #000;
+            margin-bottom: 40px;
         }
 
-        h2, h3 {
+        .year-title {
+            font-size: 24px;
             margin-top: 40px;
-            color: #f0f0f0;
         }
 
-        .table-container {
-            margin-bottom: 50px;
-            background-color: rgba(255, 255, 255, 0.85);
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
+        .batch-title {
+            font-size: 18px;
+            margin-top: 10px;
+            color: #333;
         }
 
         table {
-            width: 100%;
+            width: 90%;
+            margin: 10px auto 40px;
             border-collapse: collapse;
-            margin-top: 10px;
-            background-color: #fff;
-            color: #000;
+            background-color: white;
         }
 
         th, td {
-            border: 1px solid #888;
-            padding: 10px;
+            border: 1px solid #aaa;
+            padding: 8px;
             text-align: center;
         }
 
         th {
-            background-color: #007bff;
-            color: white;
-        }
-
-        td {
-            font-size: 14px;
-        }
-
-        .note {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #ddd;
+            background-color: #eee;
         }
     </style>
 </head>
 <body>
-    <h1>Timetable</h1>
+    <h1>📘 Timetable</h1>
 
-    {% for year in console_values %}
-        {% set year_index = loop.index0 %}
-        <h2>Year {{ year_index + 1 }}</h2>
-
-        {% for batch in year %}
-            {% set batch_index = loop.index0 %}
-            <div class="table-container">
-                <h3>Batch {{ batch_index + 1 }}</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Period 1</th>
-                            <th>Period 2</th>
-                            <th>Period 3</th>
-                            <th>Period 4</th>
-                            <th>Period 5</th>
-                            <th>Period 6</th>
-                            <th>Period 7</th>
-                            <th>Period 8</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for row in batch %}
-                            <tr>
-                                {% for item in row %}
-                                    <td>{{ '-' if item in ['leisure', 'leisuree', ' '] else item }}</td>
-                                {% endfor %}
-                            </tr>
+    {% for year_idx, year in enumerate(console_values) %}
+        <div class="year-title">Year {{ year_idx + 1 }}</div>
+        {% for batch_idx, batch in enumerate(year) %}
+            <div class="batch-title">Batch {{ batch_idx + 1 }}</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Day / Time</th>
+                        {% for time in start_times %}
+                            <th>{{ time }}</th>
                         {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row_idx, row in enumerate(batch) %}
+                        <tr>
+                            <td>Day {{ row_idx + 1 }}</td>
+                            {% for cell in row %}
+                                <td>{{ '-' if cell == 'leisure' or cell == 'leisuree' else cell }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         {% endfor %}
     {% endfor %}
-
-    <div class="note">
-        Note: "-" represents free periods (leisure time).
-    </div>
 </body>
 </html>
